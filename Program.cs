@@ -28,84 +28,87 @@ namespace DLTP_Phase2_Code_Refactoring
             do
             {
                 Console.Write("> ");
-                command = Console.ReadLine();
-                if (command == "sluta")
+                command = Console.ReadLine().ToLower();
+
+                switch (command)
                 {
-                    Console.WriteLine("Hej då!");
-                }
-                else if (command == "ny")
-                {
-                    Console.WriteLine("Lägger till ny person");
-                    Console.Write("  1. ange namn:    ");
-                    string name = Console.ReadLine();
-                    Console.Write("  2. ange adress:  ");
-                    string adress = Console.ReadLine();
-                    Console.Write("  3. ange telefon: ");
-                    string telefon = Console.ReadLine();
-                    Console.Write("  4. ange email:   ");
-                    string email = Console.ReadLine();
-                    Dict.Add(new Person(name, adress, telefon, email));
-                }
-                else if (command == "ta bort")
-                {
-                    Console.Write("Vem vill du ta bort (ange namn): ");
-                    string villTaBort = Console.ReadLine();
-                    int found = -1;
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        if (Dict[i].namn == villTaBort) found = i;
-                    }
-                    if (found == -1)
-                    {
-                        Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villTaBort);
-                    }
-                    else
-                    {
-                        Dict.RemoveAt(found);
-                    }
-                }
-                else if (command == "visa")
-                {
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        Person P = Dict[i];
-                        Console.WriteLine("{0}, {1}, {2}, {3}", P.namn, P.adress, P.telefon, P.email);
-                    }
-                }
-                else if (command == "ändra")
-                {
-                    Console.Write("Vem vill du ändra (ange namn): ");
-                    string villÄndra = Console.ReadLine();
-                    int found = -1;
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        if (Dict[i].namn == villÄndra) found = i;
-                    }
-                    if (found == -1)
-                    {
-                        Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villÄndra);
-                    }
-                    else
-                    {
-                        Console.Write("Vad vill du ändra (namn, adress, telefon eller email): ");
-                        string fältAttÄndra = Console.ReadLine();
-                        Console.Write("Vad vill du ändra {0} på {1} till: ", fältAttÄndra, villÄndra);
-                        string nyttVärde = Console.ReadLine();
-                        switch (fältAttÄndra)
-                        {
-                            case "namn": Dict[found].namn = nyttVärde; break;
-                            case "adress": Dict[found].adress = nyttVärde; break;
-                            case "telefon": Dict[found].telefon = nyttVärde; break;
-                            case "email": Dict[found].email = nyttVärde; break;
-                            default: break;
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Okänt kommando: {0}", command);
+                    case "sluta": Console.WriteLine("Hej då!"); break;
+                    case "ny": AddPerson(); break;
+                    case "ta bort": RemovePerson(); break;
+                    case "visa": PrintList(); break;
+                    case "ändra": EditPersonValue(); break;
+                    default:
+                        Console.WriteLine("Okänt kommando: {0}", command); break;
                 }
             } while (command != "sluta");
+        }
+        static void AddPerson()
+        {
+            Console.WriteLine("Lägger till ny person");
+            Console.Write("  1. ange namn:    ");
+            string name = Console.ReadLine();
+            Console.Write("  2. ange adress:  ");
+            string adress = Console.ReadLine();
+            Console.Write("  3. ange telefon: ");
+            string telefon = Console.ReadLine();
+            Console.Write("  4. ange email:   ");
+            string email = Console.ReadLine();
+            Dict.Add(new Person(name, adress, telefon, email));
+        }
+        static void EditPersonValue()
+        {
+            Console.Write("Vem vill du ändra (ange namn): ");
+            string villÄndra = Console.ReadLine();
+            int found = -1;
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                if (Dict[i].namn == villÄndra) found = i;
+            }
+            if (found == -1)
+            {
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villÄndra);
+            }
+            else
+            {
+                Console.Write("Vad vill du ändra (namn, adress, telefon eller email): ");
+                string fältAttÄndra = Console.ReadLine();
+                Console.Write("Vad vill du ändra {0} på {1} till: ", fältAttÄndra, villÄndra);
+                string nyttVärde = Console.ReadLine();
+                switch (fältAttÄndra)
+                {
+                    case "namn": Dict[found].namn = nyttVärde; break;
+                    case "adress": Dict[found].adress = nyttVärde; break;
+                    case "telefon": Dict[found].telefon = nyttVärde; break;
+                    case "email": Dict[found].email = nyttVärde; break;
+                    default: break;
+                }
+            }
+        }
+        static void RemovePerson()
+        {
+            Console.Write("Vem vill du ta bort (ange namn): ");
+            string villTaBort = Console.ReadLine();
+            int found = -1;
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                if (Dict[i].namn == villTaBort) found = i;
+            }
+            if (found == -1)
+            {
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villTaBort);
+            }
+            else
+            {
+                Dict.RemoveAt(found);
+            }
+        }
+        static void PrintList()
+        {
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                Person P = Dict[i];
+                Console.WriteLine("{0}, {1}, {2}, {3}", P.namn, P.adress, P.telefon, P.email);
+            }
         }
         static void LoadAdressFile()
         {
