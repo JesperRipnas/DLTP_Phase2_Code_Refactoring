@@ -14,10 +14,20 @@ namespace DLTP_Phase2_Code_Refactoring
     {
         public string name, adress, phone, email;
 
+        /* METHOD: Person Constructor (static)
+         * PURPOSE: Constructor for Person. Will require for four entries (name, adress, phone & email)
+         * PARAMETERS: name: Full name of new contact, adress: Adress of new contact, phone: Phonenumber of new contact, email: Emailadress of new contact
+         * RETURN VALUE: none
+         */
         public Person(string N, string A, string P, string E)
         {
             name = N; adress = A; phone = P; email = E;
         }
+        /* METHOD: Person (static)
+        * PURPOSE: When called, will ask user for four entries (name, adress, phone & email) to be created and added into the list
+        * PARAMETERS: none
+        * RETURN VALUE: Values for Person object
+        */
         public Person()
         {
             Console.Write("  1. ange namn:    ");
@@ -29,6 +39,11 @@ namespace DLTP_Phase2_Code_Refactoring
             Console.Write("  4. ange email:   ");
             email = Console.ReadLine();
         }
+        /* METHOD: EditValue (static)
+         * PURPOSE: When called for, will take values and arguments stored in valueToEdit & newValue and change stored value in list for that specific contact (index)
+         * PARAMETERS: valueToEdit: What category to change (name, adress, phone or email) newValue: What new value that selected category should have from now on.
+         * RETURN VALUE: none
+         */
         public void EditValue(string valueToEdit, string newValue, List<Person> Dict)
         {
             switch (valueToEdit)
@@ -40,7 +55,7 @@ namespace DLTP_Phase2_Code_Refactoring
                 default: break;
             }
         }
-        /* METHOD: Person.Print (static)   
+        /* METHOD: Print (static)   
          * PURPOSE: To print out a specific object in form of contact information stored in List<Person> Dict   
          * PARAMETERS: List<Person> Dict: List that contains Person objects. Ask for name, adress, phone & email for that specific index in Dict.
          * RETURN VALUE: returvärdets innebörd   
