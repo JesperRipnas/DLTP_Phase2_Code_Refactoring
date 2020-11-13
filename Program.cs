@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace DLTP_Phase2_Code_Refactoring
 {
@@ -126,7 +125,6 @@ namespace DLTP_Phase2_Code_Refactoring
                 string newValue = Console.ReadLine();
                 Person P = Dict[found];
                 P.EditValue(valueToEdit, newValue, Dict);
-
             }
         }
         /* METHOD: RemovePerson (static)
