@@ -26,6 +26,17 @@ namespace DLTP_Phase2_Code_Refactoring
             Console.Write("  4. ange email:   ");
             email = Console.ReadLine();
         }
+        public void EditValue(string valueToEdit, string newValue)
+        {
+            switch (valueToEdit)
+            {
+                case "namn": name = newValue; break;
+                case "adress": adress = newValue; break;
+                case "telefon": phone = newValue; break;
+                case "email": email = newValue; break;
+                default: break;
+            }
+        }
         public void Print()
         {
             Console.WriteLine($"{name}, {adress}, {phone}, {email}");
