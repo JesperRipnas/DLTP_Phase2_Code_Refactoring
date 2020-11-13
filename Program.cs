@@ -30,7 +30,7 @@ namespace DLTP_Phase2_Code_Refactoring
             switch (valueToEdit)
             {
                 case "namn": name = newValue; break;
-                case "adress":adress = newValue; break;
+                case "adress": adress = newValue; break;
                 case "telefon": phone = newValue; break;
                 case "email": email = newValue; break;
                 default: break;
@@ -65,11 +65,22 @@ namespace DLTP_Phase2_Code_Refactoring
                 }
             } while (command != "sluta");
         }
+        /* METHOD: AddPerson (static)
+         * PURPOSE: Uses the constructor in Person to ask user about what values to be added into the list
+         * PARAMETERS: List<Person> Dict: List that contains Person objects
+         * RETURN VALUE: None
+         */
         static void AddPerson()
         {
             Console.WriteLine("Lägger till ny person");
             Dict.Add(new Person());
         }
+        /* METHOD: EditPersonValue (static)
+         * PURPOSE: Gives the option for user to change a value set on a specific person in the List<Person> Dict. 
+         * Takes two arguments from user and pass it through into the Person.EditValue + List<Person> Dict.
+         * PARAMETERS: List<Person> Dict: List that contains Person objects. valueToEdit: What argument user wants to change. newValue: What value user wants to change on that argument. 
+         * RETURN VALUE: None
+         */
         static void EditPersonValue()
         {
             Console.Write("Vem vill du ändra (ange namn): ");
@@ -94,6 +105,11 @@ namespace DLTP_Phase2_Code_Refactoring
 
             }
         }
+        /* METHOD: RemovePerson (static)
+         * PURPOSE: Gives user the option to remove a entry in the list by asking for the name and remove that specific index from list
+         * PARAMETERS: List<Person> Dict: List that contains Person objects
+         * RETURN VALUE: None
+         */
         static void RemovePerson()
         {
             Console.Write("Vem vill du ta bort (ange namn): ");
@@ -112,6 +128,11 @@ namespace DLTP_Phase2_Code_Refactoring
                 Dict.RemoveAt(found);
             }
         }
+        /* METHOD: PrintList (static)
+         * PURPOSE: Print out name, adress, phone & email for all objects stored in list
+         * PARAMETERS: List<Person> Dict: List that contains Person objects
+         * RETURN VALUE: None
+         */
         static void PrintList()
         {
             for (int i = 0; i < Dict.Count(); i++)
@@ -119,6 +140,11 @@ namespace DLTP_Phase2_Code_Refactoring
                 Dict[i].Print();
             }
         }
+        /* METHOD: LoadAdressFile (static)
+         * PURPOSE: To locate and read a specific file. Will read each line of formated text one by one and split by #. Adds each splitted row into a new object in List<Person> Dict
+         * PARAMETERS: List<Person> Dict to add new created objects
+         * RETURN VALUE: None
+         */
         static void LoadAdressFile()
         {
             Console.Write("Laddar adresslistan ... ");
