@@ -57,7 +57,7 @@ namespace DLTP_Phase2_Code_Refactoring
         /* METHOD: Print (static)   
          * PURPOSE: To print out a specific object in form of contact information stored in List<Person> Dict   
          * PARAMETERS: List<Person> Dict: List that contains Person objects. Ask for name, adress, phone & email for that specific index in Dict.
-         * RETURN VALUE: returvärdets innebörd   
+         * RETURN VALUE: none
          */
         public void Print()
         {
