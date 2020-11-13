@@ -25,12 +25,12 @@ namespace DLTP_Phase2_Code_Refactoring
             Console.Write("  4. ange email:   ");
             email = Console.ReadLine();
         }
-        public void EditValue(string valueToEdit, string newValue)
+        public void EditValue(string valueToEdit, string newValue, List<Person> Dict)
         {
             switch (valueToEdit)
             {
                 case "namn": name = newValue; break;
-                case "adress": adress = newValue; break;
+                case "adress":adress = newValue; break;
                 case "telefon": phone = newValue; break;
                 case "email": email = newValue; break;
                 default: break;
@@ -89,14 +89,9 @@ namespace DLTP_Phase2_Code_Refactoring
                 string valueToEdit = Console.ReadLine();
                 Console.Write("Vad vill du ändra {0} på {1} till: ", valueToEdit, nameOfPersonToEdit);
                 string newValue = Console.ReadLine();
-                switch (valueToEdit)
-                {
-                    case "namn": Dict[found].name = newValue; break;
-                    case "adress": Dict[found].adress = newValue; break;
-                    case "telefon": Dict[found].phone = newValue; break;
-                    case "email": Dict[found].email = newValue; break;
-                    default: break;
-                }
+                Person P = Dict[found];
+                P.EditValue(valueToEdit, newValue, Dict);
+
             }
         }
         static void RemovePerson()
@@ -132,9 +127,7 @@ namespace DLTP_Phase2_Code_Refactoring
                 while (fileStream.Peek() >= 0)
                 {
                     string line = fileStream.ReadLine();
-                    // Console.WriteLine(line);
                     string[] word = line.Split('#');
-                    // Console.WriteLine("{0}, {1}, {2}, {3}", word[0], word[1], word[2], word[3]);
                     Person P = new Person(word[0], word[1], word[2], word[3]);
                     Dict.Add(P);
                 }
