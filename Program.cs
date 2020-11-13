@@ -15,6 +15,17 @@ namespace DLTP_Phase2_Code_Refactoring
         {
             name = N; adress = A; phone = P; email = E;
         }
+        public Person()
+        {
+            Console.Write("  1. ange namn:    ");
+            name = Console.ReadLine();
+            Console.Write("  2. ange adress:  ");
+            adress = Console.ReadLine();
+            Console.Write("  3. ange telefon: ");
+            phone = Console.ReadLine();
+            Console.Write("  4. ange email:   ");
+            email = Console.ReadLine();
+        }
         public void Print()
         {
             Console.WriteLine($"{name}, {adress}, {phone}, {email}");
@@ -47,41 +58,33 @@ namespace DLTP_Phase2_Code_Refactoring
         static void AddPerson()
         {
             Console.WriteLine("Lägger till ny person");
-            Console.Write("  1. ange namn:    ");
-            string name = Console.ReadLine();
-            Console.Write("  2. ange adress:  ");
-            string adress = Console.ReadLine();
-            Console.Write("  3. ange telefon: ");
-            string telefon = Console.ReadLine();
-            Console.Write("  4. ange email:   ");
-            string email = Console.ReadLine();
-            Dict.Add(new Person(name, adress, telefon, email));
+            Dict.Add(new Person());
         }
         static void EditPersonValue()
         {
             Console.Write("Vem vill du ändra (ange namn): ");
-            string villÄndra = Console.ReadLine();
+            string nameOfPersonToEdit = Console.ReadLine();
             int found = -1;
             for (int i = 0; i < Dict.Count(); i++)
             {
-                if (Dict[i].name == villÄndra) found = i;
+                if (Dict[i].name == nameOfPersonToEdit) found = i;
             }
             if (found == -1)
             {
-                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villÄndra);
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", nameOfPersonToEdit);
             }
             else
             {
                 Console.Write("Vad vill du ändra (namn, adress, telefon eller email): ");
-                string fältAttÄndra = Console.ReadLine();
-                Console.Write("Vad vill du ändra {0} på {1} till: ", fältAttÄndra, villÄndra);
-                string nyttVärde = Console.ReadLine();
-                switch (fältAttÄndra)
+                string valueToEdit = Console.ReadLine();
+                Console.Write("Vad vill du ändra {0} på {1} till: ", valueToEdit, nameOfPersonToEdit);
+                string newValue = Console.ReadLine();
+                switch (valueToEdit)
                 {
-                    case "namn": Dict[found].name = nyttVärde; break;
-                    case "adress": Dict[found].adress = nyttVärde; break;
-                    case "telefon": Dict[found].phone = nyttVärde; break;
-                    case "email": Dict[found].email = nyttVärde; break;
+                    case "namn": Dict[found].name = newValue; break;
+                    case "adress": Dict[found].adress = newValue; break;
+                    case "telefon": Dict[found].phone = newValue; break;
+                    case "email": Dict[found].email = newValue; break;
                     default: break;
                 }
             }
@@ -89,15 +92,15 @@ namespace DLTP_Phase2_Code_Refactoring
         static void RemovePerson()
         {
             Console.Write("Vem vill du ta bort (ange namn): ");
-            string villTaBort = Console.ReadLine();
+            string nameToRemove = Console.ReadLine();
             int found = -1;
             for (int i = 0; i < Dict.Count(); i++)
             {
-                if (Dict[i].name == villTaBort) found = i;
+                if (Dict[i].name == nameToRemove) found = i;
             }
             if (found == -1)
             {
-                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", villTaBort);
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", nameToRemove);
             }
             else
             {
