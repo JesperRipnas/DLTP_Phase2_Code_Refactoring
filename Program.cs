@@ -6,6 +6,10 @@ using System.Text;
 
 namespace DLTP_Phase2_Code_Refactoring
 {
+    /* CLASS: Person
+     * PURPOSE: Defines what data each new object should have. Will ask for name, adress, phonenumber & email for every object
+     * If user request to add a new entry to List<Person> Dict, the class Person will request these arguments.
+     */
     class Person
     {
         public string name, adress, phone, email;
