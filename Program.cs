@@ -9,10 +9,15 @@ namespace DLTP_Phase2_Code_Refactoring
 {
     class Person
     {
-        public string namn, adress, telefon, email;
-        public Person(string N, string A, string T, string E)
+        public string name, adress, phone, email;
+
+        public Person(string N, string A, string P, string E)
         {
-            namn = N; adress = A; telefon = T; email = E;
+            name = N; adress = A; phone = P; email = E;
+        }
+        public void Print()
+        {
+            Console.WriteLine($"{name}, {adress}, {phone}, {email}");
         }
     }
     class Program
@@ -21,15 +26,13 @@ namespace DLTP_Phase2_Code_Refactoring
         static void Main(string[] args)
         {
             LoadAdressFile();
-
             Console.WriteLine("Hej och välkommen till adresslistan");
             Console.WriteLine("Skriv 'sluta' för att sluta!");
             string command;
             do
             {
                 Console.Write("> ");
-                command = Console.ReadLine().ToLower();
-
+                command = Console.ReadLine();
                 switch (command)
                 {
                     case "sluta": Console.WriteLine("Hej då!"); break;
@@ -37,8 +40,7 @@ namespace DLTP_Phase2_Code_Refactoring
                     case "ta bort": RemovePerson(); break;
                     case "visa": PrintList(); break;
                     case "ändra": EditPersonValue(); break;
-                    default:
-                        Console.WriteLine("Okänt kommando: {0}", command); break;
+                    default: Console.WriteLine("Okänt kommando: {0}", command); break;
                 }
             } while (command != "sluta");
         }
@@ -62,7 +64,7 @@ namespace DLTP_Phase2_Code_Refactoring
             int found = -1;
             for (int i = 0; i < Dict.Count(); i++)
             {
-                if (Dict[i].namn == villÄndra) found = i;
+                if (Dict[i].name == villÄndra) found = i;
             }
             if (found == -1)
             {
@@ -76,9 +78,9 @@ namespace DLTP_Phase2_Code_Refactoring
                 string nyttVärde = Console.ReadLine();
                 switch (fältAttÄndra)
                 {
-                    case "namn": Dict[found].namn = nyttVärde; break;
+                    case "namn": Dict[found].name = nyttVärde; break;
                     case "adress": Dict[found].adress = nyttVärde; break;
-                    case "telefon": Dict[found].telefon = nyttVärde; break;
+                    case "telefon": Dict[found].phone = nyttVärde; break;
                     case "email": Dict[found].email = nyttVärde; break;
                     default: break;
                 }
@@ -91,7 +93,7 @@ namespace DLTP_Phase2_Code_Refactoring
             int found = -1;
             for (int i = 0; i < Dict.Count(); i++)
             {
-                if (Dict[i].namn == villTaBort) found = i;
+                if (Dict[i].name == villTaBort) found = i;
             }
             if (found == -1)
             {
@@ -106,8 +108,7 @@ namespace DLTP_Phase2_Code_Refactoring
         {
             for (int i = 0; i < Dict.Count(); i++)
             {
-                Person P = Dict[i];
-                Console.WriteLine("{0}, {1}, {2}, {3}", P.namn, P.adress, P.telefon, P.email);
+                Dict[i].Print();
             }
         }
         static void LoadAdressFile()
